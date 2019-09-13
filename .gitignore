@@ -1,0 +1,7 @@
+*.sln
+*.cbp
+Debug/
+Release/
+*.vs
+*.vcxproj.*
+*.vcxproj
