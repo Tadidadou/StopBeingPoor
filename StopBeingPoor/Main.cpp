@@ -1,11 +1,13 @@
-#include <iostream>
-#include <SFML/Graphics.hpp>
+#include "Constants.h"
+#include "Map.h"
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
+	sf::RenderWindow window(sf::VideoMode(WINDOW_SIZE_X, WINDOW_SIZE_Y), WINDOW_TITLE);
+	
+	Map map;
+	sf::Sprite mapSprite;
+	mapSprite = map.DrawMap(MAP_TEXTURE_FILE_NAME);
 
 	while (window.isOpen())
 	{
@@ -17,7 +19,7 @@ int main()
 		}
 
 		window.clear();
-		window.draw(shape);
+		window.draw(mapSprite);
 		window.display();
 	}
 
