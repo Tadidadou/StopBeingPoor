@@ -1,5 +1,3 @@
-*.sln
-*.cbp
 Debug/
 Release/
 *.vs
