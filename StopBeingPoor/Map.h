@@ -1,8 +1,9 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include <string>
 #include <iostream>
+#include <string>
+#include "Constants.h"
 
 class Map {
 public:
@@ -15,5 +16,7 @@ public:
 private:
 	unsigned int size;
 	float position;
+	/*sf::Texture groundTexture;
+	sf::Sprite */
 
 };

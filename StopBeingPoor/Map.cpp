@@ -13,13 +13,14 @@ void Map::Scroll(float position) {
 }
 
 sf::Sprite Map::DrawMap(std::string fileName) {
-	sf::Texture map;
-	if (!map.loadFromFile(fileName, sf::IntRect(10, 10, 600, 600))) {
+	sf::Texture texture;
+	fileName = TEXTURE_FILES_PREFIX + fileName;
+	if (!texture.loadFromFile(fileName, sf::IntRect(10, 10, 50, 50))) {
 		std::cout << "Map::DrawMap : Error loading texture file" + fileName << std::endl;
 	}
 
 	sf::Sprite sprite;
-	sprite.setTexture(map);
+	sprite.setTexture(texture);
 
 	return sprite;
 }

@@ -2,7 +2,7 @@
 
 #include<string>
 
-unsigned int WINDOW_SIZE_X = 800;
-unsigned int WINDOW_SIZE_Y = 400;
-std::string WINDOW_TITLE = "Stop Being Poor";
-std::string MAP_TEXTURE_FILE_NAME = "./Resources/Textures/test_textures.jpg";
+const unsigned int WINDOW_SIZE_X = 800;
+const unsigned int WINDOW_SIZE_Y = 400;
+const std::string WINDOW_TITLE = "Stop Being Poor";
+const std::string TEXTURE_FILES_PREFIX = "./Resources/Textures/";
