@@ -8,12 +8,12 @@ Map::~Map() {
 
 }
 
-void Map::Scroll(float position) {
+void Map::Scroll(float moveValue) {
 	// Set new position
-	m_position = position;
+	m_position += moveValue;
 
 	// Move the ground sprite to the current position
-	m_groundSprite.setPosition(position, WINDOW_SIZE_Y - HEIGHT_OF_GROUND);
+	m_groundSprite.setPosition(m_position, WINDOW_SIZE_Y - HEIGHT_OF_GROUND);
 
 	// Move rest of the map
 }

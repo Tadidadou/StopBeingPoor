@@ -6,6 +6,7 @@ int main()
 	
 	Map map;
 	int pos = WINDOW_SIZE_X / 2 - MAP_SIZE_X / 2;
+	int movement = 0;
 	map.SetPosition(pos);
 	map.SetGroundTexture("test_texture.jpg");
 
@@ -16,14 +17,19 @@ int main()
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
-			if (event.type == sf::Event::KeyPressed) 
+			if (event.type == sf::Event::KeyPressed)
 			{
 				if (event.key.code == sf::Keyboard::Left)
-					map.Scroll(map.GetPosition() + 10);
+					movement = 1;
 				else if (event.key.code == sf::Keyboard::Right)
-					map.Scroll(map.GetPosition() - 10);
+					movement = -1;
 			}
+			else if (event.type == sf::Event::KeyReleased)
+				movement = 0;
 		}
+
+		// Move the map
+		map.Scroll(movement);
 
 		window.clear();
 		window.draw(map);

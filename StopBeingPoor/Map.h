@@ -10,7 +10,7 @@ public:
 	Map();
 	~Map();
 
-	void Scroll(float position);
+	void Scroll(float moveValue);
 	void CreateMap();
 
 	// Setters
