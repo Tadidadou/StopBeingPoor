@@ -5,7 +5,7 @@
 #include <string>
 #include "Constants.h"
 
-class Map {
+class Map : public sf::Drawable {
 public:
 	Map();
 	~Map();
@@ -15,16 +15,16 @@ public:
 
 	// Setters
 	void SetGroundTexture(std::string filename);
-	void SetPosition(float newPos) { this->position = newPos; }
+	void SetPosition(float newPos) { m_position = newPos; }
 
 	// Getters
-	float GetPosition() { return this->position; }
-	sf::Sprite GetGroundSprite() { return this->groundSprite; }
+	float GetPosition() { return m_position; }
 
 private:
-	unsigned int size;
-	float position;
-	sf::Texture groundTexture;
-	sf::Sprite groundSprite;
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
+	unsigned int m_size;
+	float m_position;
+	sf::Texture m_groundTexture;
+	sf::Sprite m_groundSprite;
 };

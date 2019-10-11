@@ -5,8 +5,9 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(WINDOW_SIZE_X, WINDOW_SIZE_Y), WINDOW_TITLE);
 	
 	Map map;
+	int pos = WINDOW_SIZE_X / 2 - MAP_SIZE_X / 2;
+	map.SetPosition(pos);
 	map.SetGroundTexture("test_texture.jpg");
-	map.SetPosition(MAP_SIZE_X / 2 + WINDOW_SIZE_X / 2);
 
 	while (window.isOpen())
 	{
@@ -25,8 +26,7 @@ int main()
 		}
 
 		window.clear();
-		sf::Sprite groundSprite = map.GetGroundSprite();
-		window.draw(groundSprite);
+		window.draw(map);
 		window.display();
 	}
 
