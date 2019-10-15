@@ -12,14 +12,12 @@ void Map::Scroll(float moveValue) {
 	// Set new position
 	m_position += moveValue;
 
-	// Move the ground sprite to the current position
-	m_groundSprite.setPosition(m_position, WINDOW_SIZE_Y - HEIGHT_OF_GROUND);
 
-	// Move rest of the map
 }
 
 void Map::draw(sf::RenderTarget &target, sf::RenderStates states) const {
-	target.draw(m_groundSprite, states);
+	target.draw(m_groundTileMap, states);
+	target.draw(m_surfaceTileMap, states);
 }
 
 void Map::CreateMap() {
@@ -29,11 +27,27 @@ void Map::CreateMap() {
 // Setters
 void Map::SetGroundTexture(std::string filename) {
 	filename = TEXTURE_FILES_PREFIX + filename;
-	if (!m_groundTexture.loadFromFile(filename, sf::IntRect(0, 0, m_size, HEIGHT_OF_GROUND))) {
-		std::cout << "Error loading texture file" + filename << std::endl;
-	}
 
-	// TODO in the same function ?
-	m_groundSprite.setTexture(m_groundTexture);
-	m_groundSprite.setPosition(m_position, WINDOW_SIZE_Y - HEIGHT_OF_GROUND);
+	const int surfaceTiles[] = 
+	{
+		47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47
+	};
+
+	if (!m_surfaceTileMap.load(filename, sf::Vector2u(TILE_SIZE, 8), surfaceTiles, 16, 1, 0, WINDOW_SIZE_Y - HEIGHT_OF_GROUND))
+		std::cout << "Error loading texture file" + filename << std::endl;
+
+	const int groundTiles[] =
+	{
+		13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13,
+		13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13,
+		13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13,
+		13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13,
+		13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13,
+		13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13,
+		13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13,
+		13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13
+	};
+
+	if(!m_groundTileMap.load(filename, sf::Vector2u(TILE_SIZE, TILE_SIZE), groundTiles, 16, 8, 0, WINDOW_SIZE_Y - HEIGHT_OF_GROUND)) 
+		std::cout << "Error loading texture file" + filename << std::endl;
 }

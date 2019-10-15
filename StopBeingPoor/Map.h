@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <string>
+#include "TileMap.h"
 #include "Constants.h"
 
 class Map : public sf::Drawable {
@@ -25,6 +26,8 @@ private:
 
 	unsigned int m_size;
 	float m_position;
-	sf::Texture m_groundTexture;
-	sf::Sprite m_groundSprite;
+
+	// TODO: TileMap[] 
+	TileMap m_groundTileMap;
+	TileMap m_surfaceTileMap;
 };

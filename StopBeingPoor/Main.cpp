@@ -8,7 +8,7 @@ int main()
 	int pos = WINDOW_SIZE_X / 2 - MAP_SIZE_X / 2;
 	int movement = 0;
 	map.SetPosition(pos);
-	map.SetGroundTexture("test_texture.jpg");
+	map.SetGroundTexture("Foreground/Tileset.png");
 
 	while (window.isOpen())
 	{
