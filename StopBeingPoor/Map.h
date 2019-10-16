@@ -16,6 +16,7 @@ public:
 
 	// Setters
 	void SetGroundTexture(std::string filename);
+	void SetBackgroundTexture(std::string filename);
 	void SetPosition(float newPos) { m_position = newPos; }
 
 	// Getters
@@ -26,6 +27,9 @@ private:
 
 	unsigned int m_size;
 	float m_position;
+
+	sf::Texture m_backgroundTexture;
+	sf::Sprite m_backgroundSprite;
 
 	// TODO: TileMap[] 
 	TileMap m_groundTileMap;

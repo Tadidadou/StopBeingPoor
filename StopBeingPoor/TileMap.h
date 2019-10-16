@@ -10,7 +10,7 @@ public :
 	~TileMap();
 
 	// TODO: Optimisation : overload to pass directly a texture, which will prevent to load the same file several times
-	bool load(const std::string& tileset, sf::Vector2u tileSize, const int* tiles, unsigned int width, unsigned int height, unsigned int offset_x, unsigned int offset_y);
+	bool load(const std::string& tileset, sf::Vector2u tileSize, int* tiles, unsigned int width, unsigned int height, unsigned int offset_x, unsigned int offset_y);
 
 private:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;

@@ -18,6 +18,7 @@ void Map::Scroll(float moveValue) {
 void Map::draw(sf::RenderTarget &target, sf::RenderStates states) const {
 	target.draw(m_groundTileMap, states);
 	target.draw(m_surfaceTileMap, states);
+	target.draw(m_backgroundSprite, states);
 }
 
 void Map::CreateMap() {
@@ -25,29 +26,35 @@ void Map::CreateMap() {
 }
 
 // Setters
+void Map::SetBackgroundTexture(std::string filename) {
+	filename = TEXTURE_FILES_PREFIX + filename;
+
+	if(!m_backgroundTexture.loadFromFile(filename))
+		std::cout << "Error loading texture file : " << filename << std::endl;
+
+	m_backgroundSprite.setPosition(0, 0);
+	m_backgroundSprite.setTexture(m_backgroundTexture);
+	float scaleX = (float) WINDOW_SIZE_X / m_backgroundTexture.getSize().x;
+	float scaleY = (float) (WINDOW_SIZE_Y - HEIGHT_OF_GROUND) / m_backgroundTexture.getSize().y;
+	m_backgroundSprite.setScale(scaleX, scaleY);
+}
+
 void Map::SetGroundTexture(std::string filename) {
 	filename = TEXTURE_FILES_PREFIX + filename;
 
-	const int surfaceTiles[] = 
-	{
-		47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47, 47
-	};
+	const int surfSize = MAP_SIZE_X / TILE_SIZE;
+	int surfaceTiles[surfSize];
+	for (int i = 0; i < surfSize; i++)
+		surfaceTiles[i] = 47;
 
-	if (!m_surfaceTileMap.load(filename, sf::Vector2u(TILE_SIZE, 8), surfaceTiles, 16, 1, 0, WINDOW_SIZE_Y - HEIGHT_OF_GROUND))
-		std::cout << "Error loading texture file" + filename << std::endl;
+	if (!m_surfaceTileMap.load(filename, sf::Vector2u(TILE_SIZE, TILE_SIZE / 2), surfaceTiles, MAP_SIZE_X / TILE_SIZE, 1, 0, WINDOW_SIZE_Y - HEIGHT_OF_GROUND))
+		std::cout << "Error loading texture file : " << filename << std::endl;
 
-	const int groundTiles[] =
-	{
-		13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13,
-		13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13,
-		13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13,
-		13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13,
-		13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13,
-		13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13,
-		13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13,
-		13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13
-	};
+	const int groundSize = (MAP_SIZE_X / TILE_SIZE) * ((HEIGHT_OF_GROUND / TILE_SIZE) + 1);
+	int groundTiles[groundSize];
+	for (int i = 0; i < groundSize; i++)
+		groundTiles[i] = 3;
 
-	if(!m_groundTileMap.load(filename, sf::Vector2u(TILE_SIZE, TILE_SIZE), groundTiles, 16, 8, 0, WINDOW_SIZE_Y - HEIGHT_OF_GROUND)) 
+	if(!m_groundTileMap.load(filename, sf::Vector2u(TILE_SIZE, TILE_SIZE), groundTiles, MAP_SIZE_X / TILE_SIZE, (HEIGHT_OF_GROUND / TILE_SIZE) + 1, 0, WINDOW_SIZE_Y - HEIGHT_OF_GROUND)) 
 		std::cout << "Error loading texture file" + filename << std::endl;
 }

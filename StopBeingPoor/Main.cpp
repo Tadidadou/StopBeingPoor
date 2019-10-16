@@ -1,4 +1,5 @@
 #include "Map.h"
+#include "Character.h"
 
 int main()
 {
@@ -6,9 +7,14 @@ int main()
 	
 	Map map;
 	int pos = WINDOW_SIZE_X / 2 - MAP_SIZE_X / 2;
-	int movement = 0;
+	float movement = 0;
 	map.SetPosition(pos);
 	map.SetGroundTexture("Foreground/Tileset.png");
+	map.SetBackgroundTexture("Background/BGFront.png");
+
+	Character chara;
+	chara.SetPosition(sf::Vector2f(400, WINDOW_SIZE_Y - HEIGHT_OF_GROUND - 28));
+	chara.SetTexture("Characters/test-character.png");
 
 	while (window.isOpen())
 	{
@@ -20,9 +26,9 @@ int main()
 			if (event.type == sf::Event::KeyPressed)
 			{
 				if (event.key.code == sf::Keyboard::Left)
-					movement = 1;
+					movement = .5;
 				else if (event.key.code == sf::Keyboard::Right)
-					movement = -1;
+					movement = -.5;
 			}
 			else if (event.type == sf::Event::KeyReleased)
 				movement = 0;
@@ -30,9 +36,11 @@ int main()
 
 		// Move the map
 		map.Scroll(movement);
+		chara.Move(movement);
 
 		window.clear();
 		window.draw(map);
+		window.draw(chara);
 		window.display();
 	}
 
