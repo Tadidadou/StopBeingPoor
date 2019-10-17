@@ -22,10 +22,12 @@ void Character::Move(float value) {
 void Character::SetTexture(std::string filename) {
 	filename = TEXTURE_FILES_PREFIX + filename;
 
-	// TODO: Use the setTextureRect func of sprite (no loading each time for the animation)
-	if (!m_texture.loadFromFile(filename, sf::IntRect(14, 7, 19, 29)))
+	// Load the entire texture file
+	if (!m_texture.loadFromFile(filename))
 		std::cout << "Error loading texture file : " << filename << std::endl;
 
+	// Set the texture (by default, initialize to idle state) and the position
 	m_sprite.setTexture(m_texture);
+	m_sprite.setTextureRect(sf::IntRect(14, 7, 19, 29));
 	m_sprite.setPosition(m_position);
 }

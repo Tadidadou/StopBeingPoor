@@ -26,9 +26,9 @@ int main()
 			if (event.type == sf::Event::KeyPressed)
 			{
 				if (event.key.code == sf::Keyboard::Left)
-					movement = .5;
-				else if (event.key.code == sf::Keyboard::Right)
 					movement = -.5;
+				else if (event.key.code == sf::Keyboard::Right)
+					movement = .5;
 			}
 			else if (event.type == sf::Event::KeyReleased)
 				movement = 0;
