@@ -25,6 +25,9 @@ private:
 	std::string m_name;
 	unsigned int m_orientation; // 0 (default) = right | 1 = left
 	Animation runningAnimation; // Vector of animation or different animation objects ?
+	/* Idea : One vector of animations (created in the constructor)
+	One current animation and one next animation possibly empty 
+	Once current is done, we play next if there is one or go back to idle */
 	sf::Vector2f m_position;
 	sf::Texture m_texture;
 	sf::Sprite m_sprite;
