@@ -12,7 +12,7 @@ int main()
 	map.SetGroundTexture("Foreground/Tileset.png");
 	map.SetBackgroundTexture("Background/BGFront.png");
 
-	Character chara;
+	Character chara("Main perso");
 	chara.SetPosition(sf::Vector2f(400, WINDOW_SIZE_Y - HEIGHT_OF_GROUND - 28));
 	chara.SetTexture("Characters/test-character.png");
 

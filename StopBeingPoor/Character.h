@@ -5,10 +5,12 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "Constants.h"
+#include "Animation.h"
 
 class Character : public sf::Drawable {
 public:
 	Character();
+	Character(std::string name);
 	~Character();
 
 	void Move(float value);
@@ -21,11 +23,8 @@ private:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 	std::string m_name;
-	std::vector<sf::IntRect> m_frames;
-
-	// Maybe create an Animation class containing an id and a vector of frames
-	// and keep in Character a dico of animations ?
-
+	unsigned int m_orientation; // 0 (default) = right | 1 = left
+	Animation runningAnimation; // Vector of animation or different animation objects ?
 	sf::Vector2f m_position;
 	sf::Texture m_texture;
 	sf::Sprite m_sprite;
