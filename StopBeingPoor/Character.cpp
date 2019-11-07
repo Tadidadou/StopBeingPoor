@@ -3,11 +3,19 @@
 Character::Character() {
 	m_name = "Unnamed";
 	m_orientation = 0;
+
+	InitializeAnimations();
 }
 
 Character::Character(std::string name) {
 	m_name = name;
 	m_orientation = 0;
+
+	InitializeAnimations();
+}
+
+void Character::InitializeAnimations() {
+
 }
 
 Character::~Character() {
@@ -19,7 +27,7 @@ void Character::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 
 void Character::Move(float value) {
 	// TODO: Animation
-	m_sprite.setTextureRect(runningAnimation.GetNextFrame());
+	m_sprite.setTextureRect(runningAnimation.Play());
 	m_position.x += value;
 	m_sprite.setPosition(m_position);
 }
@@ -43,6 +51,6 @@ void Character::SetTexture(std::string filename) {
 
 	runningAnimation.SetFrames(runningFrames);
 	m_sprite.setTexture(m_texture);
-	m_sprite.setTextureRect(runningAnimation.GetNextFrame());
+	m_sprite.setTextureRect(runningAnimation.Play());
 	m_sprite.setPosition(m_position);
 }

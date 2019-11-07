@@ -4,6 +4,7 @@
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(WINDOW_SIZE_X, WINDOW_SIZE_Y), WINDOW_TITLE);
+	window.setFramerateLimit(WINDOW_FRAMERATE);
 	
 	Map map;
 	int pos = WINDOW_SIZE_X / 2 - MAP_SIZE_X / 2;
@@ -26,9 +27,9 @@ int main()
 			if (event.type == sf::Event::KeyPressed)
 			{
 				if (event.key.code == sf::Keyboard::Left)
-					movement = -.5;
+					movement = -MOVING_SPEED;
 				else if (event.key.code == sf::Keyboard::Right)
-					movement = .5;
+					movement = MOVING_SPEED;
 			}
 			else if (event.type == sf::Event::KeyReleased)
 				movement = 0;
