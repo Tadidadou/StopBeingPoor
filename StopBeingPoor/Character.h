@@ -15,14 +15,14 @@ public:
 	~Character();
 
 	void Move(float value);
-	void SetTexture(std::string filename);
 
 	// Setters
+	void SetTexture(std::string filename);
 	void SetPosition(sf::Vector2f pos) { m_position = pos; };
+	void SetAnimations(std::map<std::string, Animation> animations) { m_animations = animations; };
 
-private:
+protected:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-	void InitializeAnimations();
 
 	std::string m_name;
 	unsigned int m_orientation; // 0 (default) = right | 1 = left

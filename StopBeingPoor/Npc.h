@@ -4,7 +4,7 @@
 
 class Npc : public Character {
 public:
-	Npc();
+	Npc(std::string name);
 	~Npc();
 
 private:

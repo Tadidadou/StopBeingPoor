@@ -1,6 +1,6 @@
 #include "AliveCharacter.h"
 
-AliveCharacter::AliveCharacter() {
+AliveCharacter::AliveCharacter(std::string name) : Character(name) {
 
 }
 

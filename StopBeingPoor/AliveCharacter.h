@@ -5,7 +5,7 @@
 
 class AliveCharacter : public Character {
 public:
-	AliveCharacter();
+	AliveCharacter(std::string name);
 	~AliveCharacter();
 
 private:

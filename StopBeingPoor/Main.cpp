@@ -1,5 +1,5 @@
 #include "Map.h"
-#include "Character.h"
+#include "CharacterManager.h"
 
 int main()
 {
@@ -13,9 +13,8 @@ int main()
 	map.SetGroundTexture("Foreground/Tileset.png");
 	map.SetBackgroundTexture("Background/BGFront.png");
 
-	Character chara("Main perso");
-	chara.SetPosition(sf::Vector2f(400, WINDOW_SIZE_Y - HEIGHT_OF_GROUND - 28));
-	chara.SetTexture("Characters/test-character.png");
+	CharacterManager charManager;
+	charManager.CreateCharacter("main", "Characters/test-character.png", ALIVE, sf::Vector2f(400, WINDOW_SIZE_Y - HEIGHT_OF_GROUND - 28));
 
 	while (window.isOpen())
 	{
@@ -37,11 +36,11 @@ int main()
 
 		// Move the map
 		map.Scroll(movement);
-		chara.Move(movement);
+		charManager.GetCharacter("main").Move(movement);
 
 		window.clear();
 		window.draw(map);
-		window.draw(chara);
+		window.draw(charManager.GetCharacter("main"));
 		window.display();
 	}
 

@@ -1,21 +1,10 @@
 #include "Character.h"
 
-Character::Character() {
-	m_name = "Unnamed";
-	m_orientation = 0;
-
-	InitializeAnimations();
-}
+Character::Character() {}
 
 Character::Character(std::string name) {
 	m_name = name;
 	m_orientation = 0;
-
-	InitializeAnimations();
-}
-
-void Character::InitializeAnimations() {
-
 }
 
 Character::~Character() {
