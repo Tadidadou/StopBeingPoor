@@ -36,11 +36,13 @@ int main()
 
 		// Move the map
 		map.Scroll(movement);
-		charManager.GetCharacter("main").Move(movement);
+		//charManager.GetCharacter("main").Move(movement);
 
 		window.clear();
 		window.draw(map);
-		window.draw(charManager.GetCharacter("main"));
+		Character* mainPersoPtr = charManager.GetCharacter("main"); // Ca pète là --> violation d'accès
+		Character mainPerso = *mainPersoPtr;
+		window.draw(mainPerso);
 		window.display();
 	}
 
