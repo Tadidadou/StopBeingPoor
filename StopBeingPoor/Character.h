@@ -19,14 +19,14 @@ public:
 	// Setters
 	void SetTexture(std::string filename);
 	void SetPosition(sf::Vector2f pos) { m_position = pos; };
-	void SetAnimations(std::map<std::string, Animation> animations) { m_animations = animations; };
+	void SetAnimations(std::map<std::string, Animation*> animations) { m_animations = animations; };
 
 protected:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 	std::string m_name;
 	unsigned int m_orientation; // 0 (default) = right | 1 = left
-	std::map<std::string, Animation> m_animations; 
+	std::map<std::string, Animation*> m_animations; 
 	Animation runningAnimation; // Vector of animation or different animation objects ?
 	/* Idea : One vector of animations (created in the constructor)
 	One current animation and one next animation possibly empty 
