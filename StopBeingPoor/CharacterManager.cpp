@@ -13,26 +13,27 @@ void CharacterManager::LoadDataFile(std::string filename) {
 }
 
 void CharacterManager::CreateCharacter(std::string name, std::string textureFilename, CharacterType characterType, sf::Vector2f pos) {
-	Character new_character(name); // Create a generic character...
+	//Character new_character(name); // Create a generic character...
+	Character* new_character = new Character(name);
 
 	// ... and specialise it depending on the character type param
 	switch (characterType)
 	{
 	case NPC:
-		new_character = Npc(name);
+		*new_character = Npc(name);
 		break;
 	case ALIVE:
-		new_character = AliveCharacter(name);
+		*new_character = AliveCharacter(name);
 		break;
 	default:
-		new_character = Character(name);
+		*new_character = Character(name);
 		break;
 	}
 
 	// Set texture, position and add to the characters list
-	new_character.SetTexture(textureFilename);
-	new_character.SetPosition(pos);
-	m_characters.insert({ name, &new_character });
+	new_character->SetTexture(textureFilename);
+	new_character->SetPosition(pos);
+	m_characters.insert({ name, new_character });
 }
 
 void CharacterManager::CreateCharacter(std::string name, std::string textureFilename, CharacterType characterType, sf::Vector2f pos, std::map<std::string, Animation*> animations) {
@@ -43,10 +44,19 @@ void CharacterManager::CreateCharacter(std::string name, std::string textureFile
 void CharacterManager::CreateCharacter(std::string name, std::string textureFilename, CharacterType characterType, sf::Vector2f pos, std::map<std::string, Animation*> animations, CharacterStats stats) {
 	CreateCharacter(textureFilename, name, characterType, pos);
 	m_characters[name]->SetAnimations(animations);
-	//m_characters[name].SetStats(stats);
+	//m_characters[name]->SetStats(stats);
+}
+
+void CharacterManager::Move(float value) {
+	for each (std::pair<std::string, Character*> pair in m_characters) {
+		Character* character = pair.second;
+		character->Move(value);
+	}
 }
 
 void CharacterManager::draw(sf::RenderTarget& target, sf::RenderStates states) const {
-	for each (std::pair<std::string, Character*> pair in m_characters)
-		target.draw(*pair.second);
+	for each (std::pair<std::string, Character*> pair in m_characters) {
+		Character* character = pair.second;
+		target.draw(*character);
+	}
 }

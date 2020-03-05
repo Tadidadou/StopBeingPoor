@@ -36,13 +36,13 @@ int main()
 
 		// Move the map
 		map.Scroll(movement);
-		charManager.GetCharacter("main")->Move(movement);
+		//charManager.GetCharacter("main")->Move(movement);
+		charManager.Move(movement);
 
 		window.clear();
 		window.draw(map);
-		/*Character* mainPersoPtr = charManager.GetCharacter("main");
-		Character mainPerso = *mainPersoPtr;
-		window.draw(mainPerso);*/
+		/*Character* mainPerso = charManager.GetCharacter("main");
+		window.draw(*mainPerso);*/
 		window.draw(charManager);
 		window.display();
 	}

@@ -30,6 +30,8 @@ public :
 	void CreateCharacter(std::string name, std::string textureFilename, CharacterType characterType, sf::Vector2f pos, std::map<std::string, Animation*> animations, CharacterStats stats);
 	// TODO : Automatically create & init all characters from a data file
 
+	void Move(float value);
+
 	Character* GetCharacter(std::string name) { return m_characters[name]; }
 
 private :

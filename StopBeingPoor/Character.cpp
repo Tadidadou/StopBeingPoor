@@ -5,6 +5,8 @@ Character::Character() {}
 Character::Character(std::string name) {
 	m_name = name;
 	m_orientation = 0;
+
+	runningAnimation = Animation();
 }
 
 Character::~Character() {
