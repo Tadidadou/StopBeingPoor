@@ -31,6 +31,7 @@ public :
 	// TODO : Automatically create & init all characters from a data file
 
 	void Move(float value);
+	void SetCharacterAnimation(std::string char_name, std::string anim_name);
 
 	Character* GetCharacter(std::string name) { return m_characters[name]; }
 
@@ -40,5 +41,6 @@ private :
 
 	std::string m_data;
 	std::map<std::string, Character*> m_characters;
+	std::vector<std::string> m_charNames;
 
 };

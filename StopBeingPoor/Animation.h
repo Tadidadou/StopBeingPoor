@@ -12,6 +12,7 @@ public:
 
 	void SetFrames(std::vector<sf::IntRect> frames) { m_frames = frames; }
 	sf::IntRect Play();
+	bool isLastFrame() { return m_currentFrame == m_frames.size() - 1; }
 
 private:
 	std::vector<sf::IntRect> m_frames;

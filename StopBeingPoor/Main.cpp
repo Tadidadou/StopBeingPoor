@@ -25,13 +25,19 @@ int main()
 				window.close();
 			if (event.type == sf::Event::KeyPressed)
 			{
-				if (event.key.code == sf::Keyboard::Left)
+				if (event.key.code == sf::Keyboard::Left) {
 					movement = -MOVING_SPEED;
-				else if (event.key.code == sf::Keyboard::Right)
+					charManager.SetCharacterAnimation("main", "running");
+				}
+				else if (event.key.code == sf::Keyboard::Right) {
 					movement = MOVING_SPEED;
+					charManager.SetCharacterAnimation("main", "running");
+				}
 			}
-			else if (event.type == sf::Event::KeyReleased)
+			else if (event.type == sf::Event::KeyReleased) {
 				movement = 0;
+				charManager.SetCharacterAnimation("main", "idle");
+			}
 		}
 
 		// Move the map
